@@ -1,148 +1,222 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الشروط والخصوصية — أجنحة رواق</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
-<style>
-  @font-face{ font-family:"LosAngeles"; src:url("fonts/LosAngeles.woff2") format("woff2"); font-display:swap; }
-  @font-face{ font-family:"ModernKufi"; src:url("fonts/ModernKufi.woff2") format("woff2"); font-display:swap; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>سياسة الإقامة — Rawaq Policy</title>
 
-  :root{
-    --black:#0d0c0a; --black-soft:#17140f;
-    --gold:#c9a45c; --gold-bright:#eccd8c;
-    --beige:#ece3d0; --white:#faf8f2;
-  }
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  body{
-    background:var(--black); color:var(--beige);
-    font-family:"ModernKufi","Noto Kufi Arabic",sans-serif;
-    line-height:2;
-    -webkit-font-smoothing:antialiased;
-  }
-  header{
-    text-align:center;
-    padding:44px 20px 26px;
-    border-bottom:1px solid rgba(201,164,92,.25);
-  }
-  .arch{ width:44px; height:54px; margin:0 auto 12px; }
-  .brand-en{ font-family:"Poppins",sans-serif; font-size:11px; letter-spacing:.35em; color:var(--gold-bright); text-transform:uppercase; }
-  .brand-ar{ font-family:"LosAngeles","Aref Ruqaa",serif; font-size:20px; color:var(--white); margin-top:4px; }
-  h1.page-title{ font-family:"LosAngeles","Aref Ruqaa",serif; font-size:24px; color:var(--white); margin-top:16px; }
-  main{ max-width:640px; margin:0 auto; padding:36px 22px 60px; }
-  section{ margin-bottom:30px; }
-  h2{
-    font-family:"LosAngeles","Aref Ruqaa",serif;
-    font-size:17px; color:var(--gold-bright);
-    margin-bottom:10px;
-    display:flex; align-items:center; gap:10px;
-  }
-  h2 .num{
-    width:26px; height:26px; flex-shrink:0;
-    border:1px solid var(--gold);
-    border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-family:"Poppins",sans-serif; font-size:11.5px; color:var(--gold-bright);
-  }
-  p, li{ font-size:14.5px; color:var(--beige); }
-  ul{ padding-inline-start:20px; margin-top:6px; }
-  li{ margin-bottom:6px; }
-  .updated{ font-size:11.5px; color:rgba(236,227,208,.5); text-align:center; margin-bottom:26px; font-family:"Poppins",sans-serif; letter-spacing:.03em; }
-  .contact-card{
-    background:var(--black-soft);
-    border:1px solid rgba(201,164,92,.3);
-    border-radius:14px;
-    padding:20px;
-    text-align:center;
-    margin-top:34px;
-  }
-  .contact-card a{ color:var(--gold-bright); text-decoration:none; }
-  footer{ text-align:center; padding:30px; font-size:11px; color:rgba(236,227,208,.4); letter-spacing:.05em; }
-  .back-link{
-    display:block; text-align:center; margin-top:20px;
-    font-size:12.5px; color:var(--gold);
-    text-decoration:none; border-bottom:1px solid rgba(201,164,92,.4);
-    width:fit-content; margin-inline:auto;
-  }
-</style>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- الخطوط المخصصة ---------- */
+    @font-face {
+      font-family: "LosAngeles";
+      src: url("fonts/LosAngeles.woff2") format("woff2"),
+           url("fonts/LosAngeles.woff") format("woff");
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "ModernKufi";
+      src: url("fonts/ModernKufi.woff2") format("woff2"),
+           url("fonts/ModernKufi.woff") format("woff");
+      font-display: swap;
+    }
+
+    /* ---------- الهوية والألوان ---------- */
+    :root {
+      --black:      #0d0c0a;
+      --black-soft: #17140f;
+      --gold:       #c9a45c;
+      --gold-bright:#eccd8c;
+      --beige:      #ece3d0;
+      --white:      #faf8f2;
+
+      --font-ar-heading: "LosAngeles", "Aref Ruqaa", serif;
+      --font-ar-body:    "ModernKufi", "Noto Kufi Arabic", sans-serif;
+      --font-en-heading: "Poppins", sans-serif;
+      --font-en-body:    "Inter", sans-serif;
+
+      --ease: cubic-bezier(.16, .84, .44, 1);
+    }
+
+    /* ---------- التنسيقات العامة ---------- */
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    html { 
+      scroll-behavior: smooth; 
+    }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-ar-body);
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      padding-bottom: 60px;
+    }
+    html[lang="en"] body { 
+      font-family: var(--font-en-body); 
+    }
+
+    h1, h2, h3 { 
+      font-family: var(--font-ar-heading); 
+      font-weight: 700; 
+      color: var(--gold-bright);
+    }
+    html[lang="en"] h1, html[lang="en"] h2, html[lang="en"] h3 {
+      font-family: var(--font-en-heading); 
+    }
+
+    /* ---------- زر تبديل اللغة ---------- */
+    .lang-toggle {
+      position: fixed;
+      top: 18px;
+      inset-inline-end: 18px;
+      z-index: 60;
+      display: flex;
+      background: rgba(13, 12, 10, .55);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(201, 164, 92, .4);
+      border-radius: 999px;
+      padding: 4px;
+    }
+    .lang-toggle button {
+      border: none;
+      background: transparent;
+      color: var(--beige);
+      font-family: var(--font-en-body);
+      font-size: 12.5px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .lang-toggle button.active {
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    /* ---------- رأس الصفحة (Header) ---------- */
+    .policy-header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      border-bottom: 1px solid rgba(201, 164, 92, .2);
+      background: var(--black-soft);
+    }
+    .policy-header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    .policy-header p {
+      color: var(--beige);
+      font-size: 14px;
+    }
+
+    /* ---------- حاوية السياسات ---------- */
+    .policy-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .policy-section {
+      background: var(--black-soft);
+      border-inline-start: 4px solid var(--gold);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      border-radius: 0 8px 8px 0;
+    }
+    html[lang="en"] .policy-section {
+      border-radius: 8px 0 0 8px;
+    }
+
+    .policy-section h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .policy-section p {
+      color: var(--beige);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* التنسيق للتبديل بين اللغتين */
+    html[lang="en"] .ar-text { display: none; }
+    html[lang="ar"] .en-text { display: none; }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="arch">
-    <svg viewBox="0 0 78 96" fill="none"><path d="M4 94V44C4 21 20 4 39 4C58 4 74 21 74 44V94" stroke="#c9a45c" stroke-width="2"/></svg>
-  </div>
-  <div class="brand-en">AJNIHAT RAWAQ</div>
-  <div class="brand-ar">أجنحة رواق</div>
-  <h1 class="page-title">الشروط والأحكام وسياسة الخصوصية</h1>
-</header>
-
-<main>
-  <p class="updated">آخر تحديث: يوليو 2026</p>
-
-  <section>
-    <h2><span class="num">1</span> قبول الشروط</h2>
-    <p>حجزك أو إقامتك في أجنحة رواق يعني موافقتك على الشروط الموضحة هنا. أجنحة رواق منشأة سكنية صغيرة (أجنحة فندقية) تدير الحجوزات مباشرة عبر التواصل الشخصي (واتساب)، وليست جزءًا من سلسلة فندقية.</p>
-  </section>
-
-  <section>
-    <h2><span class="num">2</span> الحجز والدفع</h2>
-    <ul>
-      <li>يتم تأكيد الحجز بعد التواصل المباشر واستلام الدفعة المتفق عليها.</li>
-      <li>الأسعار المعروضة وقت التواصل قابلة للتغيير قبل تأكيد الحجز، ولا تتغير بعد التأكيد.</li>
-      <li>طرق الدفع المتاحة تُحدَّد وقت الحجز (تحويل بنكي / رابط دفع إلكتروني).</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2><span class="num">3</span> الإلغاء والاسترجاع</h2>
-    <p>سياسة الإلغاء تُحدَّد وتُرسَل للضيف وقت تأكيد الحجز، وتختلف حسب موسم الحجز والمدة المتبقية على تاريخ الوصول. للاستفسار عن حالتك الخاصة، تواصل معنا مباشرة قبل الحجز.</p>
-  </section>
-
-  <section>
-    <h2><span class="num">4</span> قواعد الإقامة</h2>
-    <ul>
-      <li>وقت تسجيل الدخول والمغادرة يُحدَّد وقت الحجز ويُذكر في رسالة الترحيب.</li>
-      <li>يُرجى المحافظة على الهدوء واحترام الجيران، خصوصًا في الساعات المتأخرة.</li>
-      <li>أي تلف أو فقدان لمحتويات الجناح يتحمّله الضيف المسؤول عن الحجز.</li>
-      <li>يُمنع التدخين داخل الجناح ما لم يُذكر خلاف ذلك.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2><span class="num">5</span> الخصوصية وبيانات الضيف</h2>
-    <p>نجمع فقط المعلومات اللازمة لإتمام حجزك (الاسم، رقم التواصل، تاريخ الإقامة). تُستخدم هذه البيانات حصريًا لتنسيق إقامتك والتواصل معك عبر واتساب، ولا تُشارَك مع أي طرف ثالث لأغراض تسويقية. يمكنك طلب حذف بياناتك بعد انتهاء إقامتك بالتواصل معنا مباشرة.</p>
-  </section>
-
-  <section>
-    <h2><span class="num">6</span> حدود المسؤولية</h2>
-    <p>تبذل أجنحة رواق جهدها لضمان تجربة إقامة مريحة وخالية من المشاكل، لكنها غير مسؤولة عن أي ظروف خارجة عن إرادتها (انقطاع خدمات، ظروف جوية، أو حالات طارئة). في حال وجود أي عطل بالجناح، يُرجى إبلاغنا فورًا عبر واتساب ليتم حله في أقرب وقت.</p>
-  </section>
-
-  <section>
-    <h2><span class="num">7</span> التعديلات على هذه السياسة</h2>
-    <p>قد تُحدَّث هذه الشروط من وقت لآخر لتحسين تجربة الضيوف. تاريخ آخر تحديث موضح أعلى الصفحة.</p>
-  </section>
-
-  <div class="contact-card">
-    <p style="margin-bottom:6px; color:var(--gold-bright);">لأي استفسار حول هذه السياسة</p>
-    <a href="#" id="whatsapp-link">تواصل معنا عبر واتساب</a>
+  <!-- أزرار تغيير اللغة -->
+  <div class="lang-toggle">
+    <button class="active" onclick="setLang('ar')">AR</button>
+    <button onclick="setLang('en')">EN</button>
   </div>
 
-  <a class="back-link" href="#" id="back-link">العودة لصفحة الترحيب</a>
-</main>
+  <!-- رأس الصفحة -->
+  <header class="policy-header">
+    <h1 class="ar-text">سياسة وقوانين الإقامة</h1>
+    <h1 class="en-text">Accommodation Policies</h1>
+    <p class="ar-text">يرجى الاطلاع على الشروط والأحكام لضمان إقامة مريحة وآمنة</p>
+    <p class="en-text">Please review the terms and conditions to ensure a safe and comfortable stay</p>
+  </header>
 
-<footer>أجنحة رواق © جميع الحقوق محفوظة</footer>
+  <!-- محتوى السياسات -->
+  <main class="policy-container">
 
-<script>
-  // Edit these two — keep them matching your main welcome page
-  const WHATSAPP_NUMBER = "966505868505";
-  const WELCOME_PAGE_URL = "https://rawaq-suites.netlify.app";
+    <!-- القسم الأول -->
+    <div class="policy-section">
+      <h3 class="ar-text">الخصوصية والأمان</h3>
+      <h3 class="en-text">Privacy & Security</h3>
+      <p class="ar-text">الالتزام بالأنظمة والآداب العامة، ويمنع منعاً باتاً استقبال الزوار غير المسجلين رسميًا في الجناح بعد الساعة 11:00 مساءً لدواعي الأمان.</p>
+      <p class="en-text">Compliance with general regulations and ethics is required. Unregistered visitors are strictly prohibited in the suite after 11:00 PM for security reasons.</p>
+    </div>
 
-  document.getElementById("whatsapp-link").href = `https://wa.me/${WHATSAPP_NUMBER}`;
-  document.getElementById("back-link").href = WELCOME_PAGE_URL;
-</script>
+    <!-- القسم الثاني -->
+    <div class="policy-section">
+      <h3 class="ar-text">سياسة التدخين</h3>
+      <h3 class="en-text">Smoking Policy</h3>
+      <p class="ar-text">جميع الأجنحة والمرافق الداخلية لـ "رواق" هي مناطق خالية تماماً من التدخين. يرجى استخدام الأماكن الخارجية المخصصة لتفادي غرامات التنظيف العميق.</p>
+      <p class="en-text">All indoor suites and facilities at "Rawaq" are strictly non-smoking. Please use designated outdoor areas to avoid deep-cleaning fees.</p>
+    </div>
+
+    <!-- القسم الثالث -->
+    <div class="policy-section">
+      <h3 class="ar-text">الأضرار والمفقودات</h3>
+      <h3 class="en-text">Damages & Lost Items</h3>
+      <p class="ar-text">النزيل مسؤول مسؤولية كاملة عن أي أضرار تلحق بمحتويات الجناح أو الأجهزة الذكية خلال فترة إقامته، وسيتم تحميل تكلفة الإصلاح أو الاستبدال على الحساب.</p>
+      <p class="en-text">The guest is fully responsible for any damages caused to the suite contents or smart devices during their stay, and repair or replacement costs will be billed accordingly.</p>
+    </div>
+
+    <!-- القسم الرابع -->
+    <div class="policy-section">
+      <h3 class="ar-text">الإلغاء والتمديد</h3>
+      <h3 class="en-text">Cancellation & Extension</h3>
+      <p class="ar-text">في حال الرغبة في تمديد فترة الإقامة، يرجى إبلاغ مكتب الاستقبال قبل 24 ساعة من موعد المغادرة الرسمي، ويخضع التمديد لتوفر الأجنحة الشاغرة.</p>
+      <p class="en-text">To extend your stay, please notify the reception 24 hours prior to the official check-out time. Extensions are subject to suite availability.</p>
+    </div>
+
+  </main>
+
+  <!-- سكريبت التبديل الديناميكي للغات -->
+  <script>
+    function setLang(lang) {
+      const html = document.documentElement;
+      html.setAttribute('lang', lang);
+      html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      
+      document.querySelectorAll('.lang-toggle button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+    }
+  </script>
+
 </body>
 </html>
