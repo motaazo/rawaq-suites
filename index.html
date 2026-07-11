@@ -704,11 +704,11 @@
   </div>
 
   <div class="hero-bottom">
-    <div class="greeting-en i18n" data-ar="أهلاً وسهلاً" data-en="Welcome">أهلاً وسهلاً</div>
-    <h1 class="guest-name" id="guestName">أهلاً بك</h1>
+    <div class="greeting-en i18n" data-ar="أهلاً وسهلاً بكم" data-en="A warm welcome to you">أهلاً وسهلاً بكم</div>
+    <h1 class="guest-name i18n" data-ar="أجنحة رواق" data-en="Ajnihat Rawaq">أجنحة رواق</h1>
     <div class="checkin-summary">
-      <p class="suite-line" id="suiteLine">جناحك جاهز</p>
-      <p class="checkout-line" id="checkoutLine"></p>
+      <p class="suite-line i18n" data-ar="جناحك جاهز — نتمنى لك إقامة هادئة ومريحة" data-en="Your suite is ready — we wish you a calm, comfortable stay">جناحك جاهز — نتمنى لك إقامة هادئة ومريحة</p>
+      <p class="checkout-line i18n" data-ar="وقت المغادرة: 12:00 ظهرًا" data-en="Checkout time: 12:00 PM">وقت المغادرة: 12:00 ظهرًا</p>
     </div>
     <div class="hero-cta-row">
       <a class="cta-btn primary guide-href" href="#" id="heroGuideBtn">
@@ -729,13 +729,6 @@
   <div class="stay-card">
     <div class="stay-row">
       <span class="k">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>
-        <span class="i18n" data-ar="رقم الجناح" data-en="Suite number">رقم الجناح</span>
-      </span>
-      <span class="v ltr" id="stayRoom">305</span>
-    </div>
-    <div class="stay-row">
-      <span class="k">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         <span class="i18n" data-ar="وقت الدخول" data-en="Check-in time">وقت الدخول</span>
       </span>
@@ -746,7 +739,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l-3 3"/></svg>
         <span class="i18n" data-ar="وقت المغادرة" data-en="Checkout time">وقت المغادرة</span>
       </span>
-      <span class="v" id="stayCheckout">12:00 ظهرًا</span>
+      <span class="v i18n" data-ar="12:00 ظهرًا" data-en="12:00 PM">12:00 ظهرًا</span>
     </div>
     <div class="stay-row">
       <span class="k">
@@ -937,9 +930,8 @@
 <script>
   /* =========================================================
      EDIT THIS BLOCK PER PROPERTY — everything else is automatic.
-     Guest personalization comes from the URL instead (see below):
-       ?ar=خالد&en=Khaled&room=305&checkout=12:00
-     Never put booking numbers or other sensitive data in the URL.
+     This page is intentionally generic: no guest names, no suite
+     numbers, no URL parameters.
   ========================================================= */
   const CONFIG = {
     guideUrl:        "https://rawaq-suites.netlify.app/rawaq-lock.html",
@@ -949,9 +941,6 @@
     eventsUrl:       "https://webook.com/explore?city=dam&country=SA",
     wifiName:        "stc_wifi_5584_EXT",
     wifiPass:        "6L.Y)4tb",
-    defaultRoom:     "305",
-    checkoutAr:      "12:00 ظهرًا",
-    checkoutEn:      "12:00 PM",
     // Nearby places: label per language, drive time, and a maps query
     nearby: [
       { ar:"كورنيش الخبر",        en:"Al Khobar Corniche",   dist:"4 min",  q:"Al Khobar Corniche" },
@@ -973,49 +962,8 @@
     ],
   };
 
-  /* ---------- URL personalization (?ar=&en=&room=&checkout=) ---------- */
-  // Sanitized against HTML injection: values only ever land in textContent,
-  // and are additionally stripped of markup characters and length-capped.
-  function sanitizeParam(v, maxLen){
-    if(!v) return "";
-    return v.replace(/[<>"'`&\\\/]/g, "").replace(/\s+/g, " ").trim().slice(0, maxLen);
-  }
-  const params   = new URLSearchParams(window.location.search);
-  const nameAr   = sanitizeParam(params.get("ar"), 40);
-  const nameEn   = sanitizeParam(params.get("en"), 40);
-  const room     = sanitizeParam(params.get("room"), 8).replace(/[^\d]/g, "") || CONFIG.defaultRoom;
-  const checkout = sanitizeParam(params.get("checkout"), 12);
-
-  const floorNum = room.length > 2 ? parseInt(room[0], 10) : null;
-  const floorsAr = ["الأرضي","الأول","الثاني","الثالث","الرابع","الخامس","السادس","السابع","الثامن","التاسع"];
-  function floorEn(n){ const s = ["th","st","nd","rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
-
-  // A bare time like "12:00" gets a PM/ظهرًا suffix; anything else is shown as-is
-  const bareTime   = /^\d{1,2}:\d{2}$/.test(checkout);
-  const checkoutAr = checkout ? (bareTime ? checkout + " ظهرًا" : checkout) : CONFIG.checkoutAr;
-  const checkoutEn = checkout ? (bareTime ? checkout + " PM"    : checkout) : CONFIG.checkoutEn;
-
-  /* ---------- i18n strings for the dynamic hero ---------- */
-  function heroStrings(lang){
-    const name = lang === "ar" ? (nameAr || nameEn) : (nameEn || nameAr);
-    const floorAr = floorNum !== null && floorsAr[floorNum] ? "الدور " + floorsAr[floorNum] + "، " : "";
-    const floorEnTxt = floorNum !== null ? floorEn(floorNum) + " floor, " : "";
-    return {
-      greeting: name
-        ? (lang === "ar" ? "أهلاً بك، " + name : "Welcome, " + name)
-        : (lang === "ar" ? "أهلاً وسهلاً بكم" : "A warm welcome to you"),
-      suite: lang === "ar"
-        ? "جناحك جاهز — " + floorAr + "جناح " + room
-        : "Your suite is ready — " + floorEnTxt + "Suite " + room,
-      checkout: lang === "ar"
-        ? "وقت المغادرة: " + checkoutAr
-        : "Checkout time: " + checkoutEn,
-    };
-  }
-
   /* ---------- Language switching (one language at a time) ---------- */
-  let currentLang = sanitizeParam(params.get("lang"), 2) === "en" ? "en"
-                  : (localStorage.getItem("rawaq-lang") || "ar");
+  let currentLang = localStorage.getItem("rawaq-lang") || "ar";
 
   function setLang(lang){
     currentLang = lang;
@@ -1038,12 +986,6 @@
       }, 120);
     });
 
-    const s = heroStrings(lang);
-    document.getElementById("guestName").textContent    = s.greeting;
-    document.getElementById("suiteLine").textContent    = s.suite;
-    document.getElementById("checkoutLine").textContent = s.checkout;
-    document.getElementById("stayCheckout").textContent = lang === "ar" ? checkoutAr : checkoutEn;
-
     document.getElementById("todayDate").textContent = new Date().toLocaleDateString(
       lang === "ar" ? "ar-SA-u-ca-gregory" : "en-GB", { day:"numeric", month:"long" });
 
@@ -1055,13 +997,11 @@
   }
 
   /* ---------- Stay details ---------- */
-  document.getElementById("stayRoom").textContent = room;
   document.getElementById("wifiName").textContent = CONFIG.wifiName;
   document.getElementById("wifiPass").textContent = CONFIG.wifiPass;
   const phoneEl = document.getElementById("receptionPhone");
   phoneEl.textContent = CONFIG.receptionPhone;
   phoneEl.href = "tel:" + CONFIG.receptionPhone;
-  document.getElementById("checkoutCard").textContent = checkout || "12:00";
 
   function copyText(id, btn){
     const text = document.getElementById(id).textContent;
@@ -1092,17 +1032,16 @@
   /* ---------- Action links ---------- */
   const wa = msg => "https://wa.me/" + CONFIG.whatsappNumber +
                     (msg ? "?text=" + encodeURIComponent(msg) : "");
-  const roomTagAr = " (جناح " + room + ")";
 
   document.querySelectorAll(".guide-href").forEach(a => a.href = CONFIG.guideUrl);
   document.getElementById("guideLink").textContent = CONFIG.guideUrl.replace(/^https?:\/\//,"").replace(/\/.*$/,"");
 
-  document.getElementById("heroContactBtn").href = wa("مرحباً، أنا نزيل لديكم" + roomTagAr);
-  document.getElementById("btn-services").href   = wa("أرغب بطلب خدمة" + roomTagAr);
+  document.getElementById("heroContactBtn").href = wa("مرحباً، أنا نزيل لديكم في أجنحة رواق");
+  document.getElementById("btn-services").href   = wa("أرغب بطلب خدمة");
   document.getElementById("btn-location").href   = CONFIG.mapsUrl;
   document.getElementById("btn-whatsapp").href   = wa("");
-  document.getElementById("btn-extend").href     = wa("أرغب بتمديد الإقامة" + roomTagAr);
-  document.getElementById("btn-issue").href      = wa("أود الإبلاغ عن مشكلة" + roomTagAr);
+  document.getElementById("btn-extend").href     = wa("أرغب بتمديد الإقامة");
+  document.getElementById("btn-issue").href      = wa("أود الإبلاغ عن مشكلة");
   document.getElementById("btn-events").href     = CONFIG.eventsUrl;
   document.getElementById("emReceptionCall").href = "tel:" + CONFIG.receptionPhone;
   document.getElementById("emReceptionWa").href   = wa("");
@@ -1193,12 +1132,6 @@
 </script>
 
 <!-- =========================================================
-PER-GUEST LINKS
-  Share links like:
-    https://your-site/?ar=خالد&en=Khaled&room=305&checkout=12:00
-  All parameters are optional; omit any of them for the generic
-  page. Never include booking numbers or other sensitive data.
-
 HOSTING
   Works as a single static file on Netlify, GitHub Pages, or any
   web host. Keep rawaq-guide.html / rawaq-lock.html /
