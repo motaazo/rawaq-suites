@@ -1,84 +1,25 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="robots" content="noindex, nofollow">
-<title>الدخول للدليل — أجنحة رواق</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  @font-face{ font-family:"LosAngeles"; src:url("fonts/LosAngeles.woff2") format("woff2"); font-display:swap; }
-  :root{
-    --black:#0d0c0a; --black-soft:#17140f;
-    --gold:#c9a45c; --gold-bright:#eccd8c;
-    --beige:#ece3d0; --white:#faf8f2;
-  }
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  body{
-    background:var(--black); color:var(--beige);
-    font-family:"Noto Kufi Arabic",sans-serif;
-    min-height:100vh; display:flex; align-items:center; justify-content:center;
-    padding:24px;
-  }
-  .box{
-    max-width:380px; width:100%; text-align:center;
-    background:var(--black-soft); border:1px solid rgba(201,164,92,.28);
-    border-radius:18px; padding:36px 26px;
-  }
-  .brand-ar{ font-family:"LosAngeles","Aref Ruqaa",serif; font-size:24px; color:var(--white); margin-bottom:6px; }
-  .brand-en{ font-family:"Poppins",sans-serif; font-size:11px; letter-spacing:.3em; color:var(--gold-bright); text-transform:uppercase; margin-bottom:26px; }
-  p{ color:var(--gold-bright); font-size:14px; line-height:1.9; margin-bottom:20px; }
-  input{
-    width:100%; text-align:center; letter-spacing:.35em; font-size:22px;
-    background:var(--black); border:1px solid rgba(201,164,92,.4);
-    border-radius:10px; padding:16px; color:var(--white);
-    margin-bottom:14px; direction:ltr;
-  }
-  input:focus{ outline:none; border-color:var(--gold); }
-  .error{ color:#e08a8a; font-size:13px; margin-top:-6px; margin-bottom:14px; min-height:18px; }
-  button{
-    width:100%; padding:14px; border:none; border-radius:10px;
-    background:linear-gradient(135deg,var(--gold),var(--gold-bright));
-    color:var(--black); font-weight:600; font-size:15px; cursor:pointer;
-    font-family:inherit;
-  }
-</style>
-</head>
-<body>
-
-<div class="box">
-  <div class="brand-ar">أجنحة رواق</div>
-  <div class="brand-en">Ajnihat Rawaq</div>
-  <p>لحمايتكم، الرجاء إدخال آخر 4 أرقام من جوالكم<br>(نفس رقم الحجز)</p>
-  <input type="tel" inputmode="numeric" maxlength="4" id="codeInput" placeholder="0000" autofocus>
-  <div class="error" id="errorMsg"></div>
-  <button onclick="checkCode()">دخول للدليل</button>
-</div>
-
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive"><title>دخول الضيف — أجنحة رواق</title>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Noto+Kufi+Arabic:wght@400;600&display=swap" rel="stylesheet">
+<style>:root{--b:#0d0c0a;--s:#17140f;--g:#c9a45c;--gb:#eccd8c;--w:#faf8f2}*{box-sizing:border-box}body{margin:0;background:var(--b);color:var(--w);font-family:"Noto Kufi Arabic",sans-serif;min-height:100vh;display:grid;place-items:center;padding:22px}.box{width:min(390px,100%);background:var(--s);border:1px solid #c9a45c55;border-radius:18px;padding:34px;text-align:center}h1{font:700 27px "Aref Ruqaa",serif}p{color:#ece3d0;line-height:1.9;font-size:13px}input,button{width:100%;border-radius:10px;padding:15px;font:inherit}input{background:#0d0c0a;border:1px solid #c9a45c77;color:white;text-align:center;letter-spacing:.25em;font-size:20px}button{margin-top:12px;border:0;background:linear-gradient(135deg,var(--gb),var(--g));font-weight:700;cursor:pointer}.msg{min-height:24px;margin-top:10px;color:#e6a1a1;font-size:12px}</style></head>
+<body><main class="box"><h1>أجنحة رواق</h1><p>أدخل رمز الوصول المرسل لك بعد تأكيد الحجز.</p>
+<form id="accessForm"><input id="accessCode" name="code" type="password" inputmode="numeric" autocomplete="one-time-code" required aria-label="رمز الوصول"><button type="submit">دخول لدليل الضيف</button><div class="msg" id="msg" role="alert"></div></form></main>
 <script>
-  /* =========================================================
-     CHANGE THIS FOR EVERY NEW GUEST
-     Use the last 4 digits of the guest's booking phone number
-  ========================================================= */
-  const ACCESS_CODE = "0505";
-  const GUIDE_URL = "rawaq-guide.html";
-
-  function checkCode(){
-    const val = document.getElementById("codeInput").value.trim();
-    if (val === ACCESS_CODE){
-      window.location.href = GUIDE_URL;
-    } else {
-      document.getElementById("errorMsg").textContent = "الرقم غير صحيح، حاول مرة أخرى";
-      document.getElementById("codeInput").value = "";
-      document.getElementById("codeInput").focus();
-    }
-  }
-
-  document.getElementById("codeInput").addEventListener("keydown", (e)=>{
-    if (e.key === "Enter") checkCode();
-  });
-</script>
-</body>
-</html>
+/* Production contract:
+ POST /api/guest/access  { code: "...." }
+ Server validates the code, creates an HttpOnly + Secure + SameSite=Strict session cookie,
+ and returns { ok:true, redirect:"/rawaq-guide.html" }.
+ Never return/store the valid PIN in client code.
+*/
+const API_ENDPOINT="/api/guest/access";
+document.getElementById("accessForm").addEventListener("submit",async(e)=>{
+ e.preventDefault(); const msg=document.getElementById("msg"); msg.textContent="جارٍ التحقق…";
+ try{
+  const r=await fetch(API_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},credentials:"same-origin",body:JSON.stringify({code:document.getElementById("accessCode").value})});
+  const data=await r.json().catch(()=>({}));
+  if(r.ok&&data.ok&&data.redirect){location.assign(data.redirect);return}
+  msg.textContent="تعذر التحقق من رمز الوصول.";
+ }catch(_){msg.textContent="خدمة التحقق غير مفعلة بعد. يرجى التواصل مع المضيف."}
+});
+</script></body></html>
